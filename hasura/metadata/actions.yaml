@@ -1,6 +1,13 @@
-actions: []
+actions:
+- name: placeOrder
+  definition:
+    kind: synchronous
+    handler: http://localhost:3000
+  permissions:
+  - role: user
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+  - name: OrderResponse
   scalars: []

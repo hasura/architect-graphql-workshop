@@ -1,2 +1,14 @@
+type Mutation {
+  placeOrder (
+    product_id: Int
+    quantity: Int
+  ): OrderResponse
+}
 
+
+
+
+type OrderResponse {
+  order_id : Int
+}
 
