@@ -34,3 +34,14 @@
         table:
           schema: public
           name: orders
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      - address
+      - phone
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
