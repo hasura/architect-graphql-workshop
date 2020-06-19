@@ -19,7 +19,6 @@ SET default_with_oids = false;
 ---
 
 
-DROP TABLE IF EXISTS order_details;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS products;
@@ -54,22 +53,8 @@ CREATE TABLE orders (
     user_id integer,
     order_date date,
     shipping_address text,
+    status text default 'new',
     FOREIGN KEY (user_id) REFERENCES users (id)
-);
-
-
---
--- Name: order_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE order_details (
-    order_id smallint NOT NULL,
-    product_id smallint NOT NULL,
-    unit_price real NOT NULL,
-    quantity smallint NOT NULL,
-    PRIMARY KEY (order_id, product_id),
-    FOREIGN KEY (product_id) REFERENCES products,
-    FOREIGN KEY (order_id) REFERENCES orders
 );
 
 COMMIT;

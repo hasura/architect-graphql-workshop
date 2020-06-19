@@ -91,7 +91,6 @@ Go to the Graphiql tab and start trying out queries, mutations, and subscription
 - Users: Users who are browsing and purchasing items
 - Products: Inventory of products on sale
 - Orders: Order information
-- Order Details: More details for an order
 
 ## Exploring the GraphQL API
 
