@@ -53,6 +53,7 @@ CREATE TABLE orders (
     user_id integer,
     order_date date,
     shipping_address text,
+    shipment_id uuid,
     status text default 'new',
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
