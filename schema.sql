@@ -36,7 +36,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE products (
-    product_id smallint NOT NULL PRIMARY KEY,
+    product_id integer NOT NULL PRIMARY KEY,
     product_name text NOT NULL,
     supplier_id smallint,
     category_id smallint,
@@ -50,8 +50,10 @@ CREATE TABLE products (
 
 CREATE TABLE orders (
     order_id serial PRIMARY KEY,
-    user_id integer,
-    order_date date,
+    user_id integer NOT NULL,
+    product_id integer NOT NULL,
+    quantity integer default 1, 
+    order_date timestamptz default now(),
     shipping_address text,
     shipment_id uuid,
     status text default 'new',
