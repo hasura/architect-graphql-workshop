@@ -8,6 +8,21 @@
 - table:
     schema: public
     name: products
+  select_permissions:
+  - role: public
+    permission:
+      columns:
+      - product_id
+      - product_name
+      - supplier_id
+      - category_id
+      - quantity_per_unit
+      - unit_price
+      - units_in_stock
+      - units_on_order
+      - reorder_level
+      - discontinued
+      filter: {}
 - table:
     schema: public
     name: users
