@@ -2,7 +2,7 @@ actions:
 - name: placeOrder
   definition:
     kind: synchronous
-    handler: http://localhost:3000
+    handler: https://8q3t8.sse.codesandbox.io/placeOrder
   permissions:
   - role: user
 custom_types:
@@ -10,4 +10,12 @@ custom_types:
   input_objects: []
   objects:
   - name: OrderResponse
+    relationships:
+    - remote_table:
+        schema: public
+        name: orders
+      name: order
+      type: object
+      field_mapping:
+        order_id: order_id
   scalars: []
