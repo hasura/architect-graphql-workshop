@@ -1,1 +1,21 @@
-[]
+- table:
+    schema: public
+    name: orders
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+- table:
+    schema: public
+    name: products
+- table:
+    schema: public
+    name: users
+  array_relationships:
+  - name: orders
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: orders
