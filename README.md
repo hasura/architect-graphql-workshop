@@ -5,7 +5,7 @@
 We will work with your Heroku app, if you haven't created a Heroku app already then you can deploy using:
 
 [![Deploy to
-Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hasura/graphql-engine-heroku)
+Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=tirumaraiselvan/3factor-workshop-heroku/)
 
 ![Create New App - Heroku](https://graphql-engine-cdn.hasura.io/heroku-repo/assets/create_new_app_heroku_3.png)
 
