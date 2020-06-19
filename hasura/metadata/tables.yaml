@@ -5,6 +5,36 @@
   - name: user
     using:
       foreign_key_constraint_on: user_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      set:
+        user_id: x-hasura-user-id
+      columns:
+      - order_date
+      - product_id
+      - quantity
+      - shipment_id
+      - shipping_address
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - order_id
+      - product_id
+      - quantity
+      - user_id
+      - shipping_address
+      - status
+      - order_date
+      - shipment_id
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: products
