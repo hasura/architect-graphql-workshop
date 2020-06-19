@@ -88,12 +88,10 @@ Go to the Graphiql tab and start trying out queries, mutations, and subscription
 
 ## Dataset
 
-The food-delivery dataset includes sample data for the following:
-
-- Restaurants: Restaurants from which you can place order
-- Menu Items: Menu items for the restaurants
-- Users: Users who want to place an order
-- Orders: Order information and status
+- Users: Users who are browsing and purchasing items
+- Products: Inventory of products on sale
+- Orders: Order information
+- Order Details: More details for an order
 
 ## Exploring the GraphQL API
 
@@ -104,20 +102,24 @@ The food-delivery dataset includes sample data for the following:
 ## Authn and Authz
 
 - `x-hasura-admin-secret`
+- Hasura Authz
+
+## Model reads
+
+- Define roles on models
 - `x-hasura-role` and `x-hasura-user-id`
+- Authorized models/views/functions
 
 ## Model writes (Actions)
 
 - Place an order
+- Create shipment (SaaS API)
+- Create action relationship (remote join)
 
 ## Model events
 
-- Payment inserted (update order)
-- Order updated (assign delivery agent)
-- EOD reports
-
-## Model reads
-
-- Authorized views
+- Sync with analytics db (data event)
+- EOD reports (time event)
+- Mark delivery complete (time event)
 
 ## CQRS and 3factor app

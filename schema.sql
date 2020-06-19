@@ -1,88 +1,75 @@
+--
+-- PostgreSQL database dump
+--
+
 BEGIN;
 
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET default_tablespace = '';
+SET default_with_oids = false;
 
-CREATE TABLE public.users (
-  id serial PRIMARY KEY,
-  name text,
-  email text,
-  address text
+
+---
+--- drop tables
+---
+
+
+DROP TABLE IF EXISTS order_details;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS products;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE users (
+    id serial PRIMARY KEY,
+    name text,
+    address text, 
+    phone character varying(24)
 );
 
-CREATE TABLE public.restaurants (
-  id integer PRIMARY KEY,
-  name text NOT NULL,
-  address text,
-  rating float
+CREATE TABLE products (
+    product_id smallint NOT NULL PRIMARY KEY,
+    product_name text NOT NULL,
+    supplier_id smallint,
+    category_id smallint,
+    quantity_per_unit character varying(20),
+    unit_price real,
+    units_in_stock smallint,
+    units_on_order smallint,
+    reorder_level smallint,
+    discontinued integer NOT NULL
 );
 
-CREATE TABLE public.menu_items (
-  restaurant_id integer,
-  item_id integer NOT NULL,
-  name text NOT NULL,
-  PRIMARY KEY(restaurant_id, item_id)
+CREATE TABLE orders (
+    order_id serial PRIMARY KEY,
+    user_id integer,
+    order_date date,
+    shipping_address text,
+    FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
-ALTER TABLE ONLY public.menu_items
-  ADD CONSTRAINT menu_items_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES public.restaurants(id);
 
+--
+-- Name: order_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
 
-CREATE TABLE public.orders (
-  order_id text PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id integer NOT NULL,
-  restaurant_id integer NOT NULL,
-  payment_rcvd boolean DEFAULT false,
-  driver_assigned boolean DEFAULT false NOT NULL,
-  food_picked boolean DEFAULT false NOT NULL,
-  delivered boolean DEFAULT false NOT NULL,
-  cancelled boolean DEFAULT false,
-  created_at timestamp with time zone DEFAULT now() NOT NULL
+CREATE TABLE order_details (
+    order_id smallint NOT NULL,
+    product_id smallint NOT NULL,
+    unit_price real NOT NULL,
+    quantity smallint NOT NULL,
+    PRIMARY KEY (order_id, product_id),
+    FOREIGN KEY (product_id) REFERENCES products,
+    FOREIGN KEY (order_id) REFERENCES orders
 );
-
-ALTER TABLE ONLY public.orders
-  ADD CONSTRAINT orders_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
-
-ALTER TABLE ONLY public.orders
-  ADD CONSTRAINT orders_restaurant_id_fkey FOREIGN KEY (restaurant_id) REFERENCES public.restaurants(id);
-
-CREATE TABLE public.order_items (
-  order_id text NOT NULL,
-  item_id serial NOT NULL,
-  quantity int NOT NULL
-);
-
-ALTER TABLE ONLY public.order_items
-  ADD CONSTRAINT order_items_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(order_id);
-
-CREATE TABLE public.assignment (
-  order_id text NOT NULL,
-  driver_id integer NOT NULL
-);
-
-ALTER TABLE ONLY public.assignment
-  ADD CONSTRAINT assignment_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(order_id);
-
-CREATE TABLE public.payments (
-  id serial PRIMARY KEY,
-  order_id text NOT NULL,
-  payment_type text,
-  payment_reference text,
-  amount integer NOT NULL
-);
-
-ALTER TABLE ONLY public.payments
-  ADD CONSTRAINT payments_order_id_fkey FOREIGN KEY (order_id) REFERENCES public.orders(order_id);
-
-CREATE VIEW public.number_order_driver_assigned AS
-  SELECT count(*) AS count
-    FROM public.orders
-   WHERE (orders.driver_assigned = true);
-
-CREATE VIEW public.number_orders AS
-  SELECT count(*) AS count
-    FROM public.orders;
-
 
 COMMIT;
-
-
