@@ -115,7 +115,7 @@ Go to the Graphiql tab and start trying out queries, mutations, and subscription
 https://codesandbox.io/s/determined-shockley-4gys1?file=/src/index.js
 
 - Place an order
-- Create shipment (SaaS API: https://logistics-api-2.herokuapp.com)
+- Create shipment (SaaS API: https://logistics-api-2.herokuapp.com/v1/graphql)
 - Create action relationship (remote join)
 
 ## Remote joins
