@@ -1,1 +1,4 @@
-[]
+- name: shipment_service
+  definition:
+    url: https://logistics-api-2.herokuapp.com/v1/graphql
+    timeout_seconds: 60
