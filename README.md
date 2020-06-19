@@ -115,6 +115,11 @@ Go to the Graphiql tab and start trying out queries, mutations, and subscription
 - Create shipment (SaaS API)
 - Create action relationship (remote join)
 
+## Remote joins
+
+- Add Remote Schema
+- Create remote relationship
+
 ## Model events
 
 - Sync with analytics db (data event)
