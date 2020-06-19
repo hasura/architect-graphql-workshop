@@ -112,6 +112,8 @@ Go to the Graphiql tab and start trying out queries, mutations, and subscription
 
 ## Model writes (Actions)
 
+https://codesandbox.io/s/determined-shockley-4gys1?file=/src/index.js
+
 - Place an order
 - Create shipment (SaaS API)
 - Create action relationship (remote join)
