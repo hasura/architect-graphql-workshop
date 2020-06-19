@@ -2,7 +2,7 @@ actions:
 - name: placeOrder
   definition:
     kind: synchronous
-    handler: https://8q3t8.sse.codesandbox.io/placeOrder
+    handler: http://localhost:3000/placeOrder
   permissions:
   - role: user
 custom_types:
