@@ -118,6 +118,14 @@ https://codesandbox.io/s/determined-shockley-4gys1?file=/src/index.js
 - Create shipment (SaaS API: https://logistics-api-2.herokuapp.com/v1/graphql)
 - Create action relationship (remote join)
 
+To test if action is working:
+
+```
+app.post("/test", (req, res) => {
+  return res.json({ order_id: 1 });
+});
+```
+
 ## Remote joins
 
 - Add Remote Schema
