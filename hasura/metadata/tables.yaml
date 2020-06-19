@@ -5,6 +5,16 @@
   - name: user
     using:
       foreign_key_constraint_on: user_id
+  remote_relationships:
+  - definition:
+      remote_field:
+        shipment:
+          arguments:
+            id: $shipment_id
+      hasura_fields:
+      - shipment_id
+      remote_schema: shipment_service
+    name: shipment
   insert_permissions:
   - role: user
     permission:
